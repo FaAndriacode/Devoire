@@ -1,9 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<CanalPlusContext>(options =>
+    // CHANGE THE CONNECTION BDD IN APPSETTINGS.JSON
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLSERVER_FANDRESENA"))
+);
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

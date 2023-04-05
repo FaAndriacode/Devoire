@@ -1,16 +1,17 @@
-﻿using System.Diagnostics;
+﻿using canalsat.Models;
 using Microsoft.AspNetCore.Mvc;
-using canalsat.Models;
+using System.Diagnostics;
 
 namespace canalsat.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private readonly CanalPlusContext _context;
+    public HomeController(ILogger<HomeController> logger, CanalPlusContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
